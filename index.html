@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Europe Trip Plan · Aug 14–31, 2026</title>
+<style>
+  :root {
+    --green: #1D9E75; --green-light: #E1F5EE; --green-dark: #085041;
+    --blue: #378ADD; --blue-light: #E6F1FB; --blue-dark: #0C447C;
+    --amber: #D97706; --amber-light: #FAEEDA; --amber-dark: #633806;
+    --coral: #DC2626; --coral-light: #FAECE7;
+    --purple: #7C3AED; --purple-light: #EDE9FE;
+    --spain: #c60b1e; --spain-light: #fde8ea;
+    --text: #1a1a18; --text2: #5a5a56; --text3: #8a8a84;
+    --bg: #fafaf8; --bg2: #f5f4f0; --bg3: #eeede8;
+    --border: #e2e0d8; --border2: #d0cdc4;
+    --radius: 12px; --radius-sm: 8px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  .page { max-width: 860px; margin: 0 auto; padding: 24px 20px 80px; }
+  h1 { font-size: 26px; font-weight: 600; margin-bottom: 4px; }
+  .subtitle { font-size: 14px; color: var(--text2); margin-bottom: 28px; }
+
+  /* Tabs */
+  .tabs { display: flex; gap: 6px; margin-bottom: 24px; flex-wrap: wrap; }
+  .tab-btn { padding: 8px 16px; border-radius: var(--radius-sm); border: 1.5px solid var(--border2); background: white; font-size: 13px; font-weight: 500; cursor: pointer; color: var(--text2); transition: all .15s; }
+  .tab-btn.active { background: var(--text); color: white; border-color: var(--text); }
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+
+  /* Cards */
+  .card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 14px; }
+  .card.accent-green  { border-left: 4px solid var(--green); }
+  .card.accent-blue   { border-left: 4px solid var(--blue); }
+  .card.accent-amber  { border-left: 4px solid var(--amber); }
+  .card.accent-purple { border-left: 4px solid var(--purple); }
+  .card.accent-coral  { border-left: 4px solid var(--coral); }
+  .card.accent-spain  { border-left: 4px solid var(--spain); }
+  .card-title { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+  .card-sub   { font-size: 13px; color: var(--text2); margin-bottom: 12px; }
+
+  /* Badges */
+  .badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 20px; margin-bottom: 8px; letter-spacing: .02em; }
+  .bg-green  { background: var(--green-light);  color: var(--green-dark); }
+  .bg-blue   { background: var(--blue-light);   color: var(--blue-dark); }
+  .bg-amber  { background: var(--amber-light);  color: var(--amber-dark); }
+  .bg-purple { background: var(--purple-light); color: var(--purple); }
+  .bg-coral  { background: var(--coral-light);  color: var(--coral); }
+  .bg-spain  { background: var(--spain-light);  color: var(--spain); }
+  .bg-gray   { background: var(--bg3);          color: var(--text2); }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 36px; }
+  .timeline::before { content:''; position:absolute; left:14px; top:8px; bottom:8px; width:2px; background: var(--border); }
+  .tl-item  { position: relative; margin-bottom: 20px; }
+  .tl-dot   { position: absolute; left: -28px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--green); border: 2px solid white; box-shadow: 0 0 0 2px var(--green); }
+  .tl-dot.blue   { background: var(--blue);  box-shadow: 0 0 0 2px var(--blue); }
+  .tl-dot.amber  { background: var(--amber); box-shadow: 0 0 0 2px var(--amber); }
+  .tl-dot.purple { background: var(--purple);box-shadow: 0 0 0 2px var(--purple); }
+  .tl-dot.spain  { background: var(--spain); box-shadow: 0 0 0 2px var(--spain); }
+  .tl-dot.gray   { background: var(--text3); box-shadow: 0 0 0 2px var(--text3); }
+  .tl-date  { font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 2px; }
+  .tl-title { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+  .tl-desc  { font-size: 13px; color: var(--text2); line-height: 1.65; }
+
+  /* Grid */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media(max-width:600px) { .grid2 { grid-template-columns: 1fr; } }
+
+  /* Info boxes */
+  .infobox { background: var(--bg2); border-radius: var(--radius-sm); padding: 12px 14px; margin-top: 10px; font-size: 13px; color: var(--text2); line-height: 1.7; }
+  .infobox strong { color: var(--text); }
+  .warn { background: var(--amber-light); border-radius: var(--radius-sm); padding: 10px 14px; margin-top: 10px; font-size: 13px; color: var(--amber-dark); line-height: 1.65; }
+  .tip  { background: var(--green-light); border-radius: var(--radius-sm); padding: 10px 14px; margin-top: 10px; font-size: 13px; color: var(--green-dark); line-height: 1.65; }
+  .spain-box { background: var(--spain-light); border-radius: var(--radius-sm); padding: 10px 14px; margin-top: 10px; font-size: 13px; color: var(--spain); line-height: 1.65; }
+
+  /* Section headers */
+  .sec-label { font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 14px; margin-top: 8px; }
+
+  /* Divider */
+  hr { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+
+  /* Bullet list */
+  ul.dots { padding-left: 18px; font-size: 13px; color: var(--text2); line-height: 1.9; }
+  ul.dots li::marker { color: var(--green); }
+
+  /* Time blocks */
+  .time-block { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 10px; }
+  .time-label { min-width: 72px; font-size: 12px; font-weight: 700; color: var(--text3); padding-top: 1px; flex-shrink: 0; }
+  .time-content { font-size: 13px; color: var(--text2); line-height: 1.65; }
+  .time-content strong { color: var(--text); }
+
+  .flight-row { display: flex; gap: 8px; align-items: center; font-size: 13px; flex-wrap: wrap; }
+  .arrow { color: var(--text3); }
+  .flight-badge { font-size: 11px; padding: 2px 8px; border-radius: 4px; background: var(--bg2); color: var(--text2); font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>🗺️ Europe Trip Plan · Aug 14–31, 2026</h1>
+  <p class="subtitle">1 adult + 2 kids (ages 5 & 10) · SEA → CPH → LIS → MAD → ORY → OPO → Algarve → LIS → CPH → SEA</p>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="show('cph',this)">🇩🇰 Copenhagen (Aug 15)</button>
+    <button class="tab-btn" onclick="show('lisbon',this)">🇵🇹 Lisbon (Aug 16–18)</button>
+    <button class="tab-btn" onclick="show('madrid',this)">🇪🇸 Madrid Layover (Aug 18)</button>
+    <button class="tab-btn" onclick="show('paris',this)">🇫🇷 Paris + Disney (Aug 18–23)</button>
+    <button class="tab-btn" onclick="show('porto',this)">🍷 Porto + Drive South (Aug 23–26)</button>
+    <button class="tab-btn" onclick="show('algarve',this)">☀️ Algarve & Return (Aug 26–31)</button>
+    <button class="tab-btn" onclick="show('flights',this)">✈️ Flights & Checklist</button>
+  </div>
+
+  <!-- ===================== COPENHAGEN ===================== -->
+  <div id="cph" class="tab-pane active">
+    <div class="card accent-green">
+      <span class="badge bg-green">✈ Land Aug 15 · 10:10 AM CPH</span>
+      <div class="card-title">Day in Copenhagen — 9 hours, ages 5 & 10</div>
+      <div class="card-sub">Land 10:10 AM · CPH → LIS departs 7:10 PM · Check-in closes 6:30 PM · Be back at airport by 5:45 PM</div>
+      <div class="infobox">
+        <strong>Your real window:</strong> Off the plane ~10:30 AM → bags + customs → metro into city ~11:15 AM → back at airport by 5:45 PM → <strong>~6.5 usable hours in the city.</strong> Perfect for Tivoli + Nyhavn.
+      </div>
+    </div>
+
+    <p class="sec-label">Getting into the city</p>
+    <div class="card accent-blue">
+      <div class="card-title">Metro M2 — Terminal 3 → Kongens Nytorv</div>
+      <div class="card-sub">13 minutes · Every 4–6 min · ~30 DKK/person (≈ $4.50)</div>
+      <div class="infobox">
+        <strong>Luggage tip:</strong> Use the left-luggage storage at Terminal 3 (approx. €8–12/bag). Leave bags here before going into the city — you're all coming back for the evening flight anyway.
+      </div>
+    </div>
+
+    <p class="sec-label">The day plan</p>
+    <div class="card accent-green">
+      <span class="badge bg-green">11:30 AM – 3:30 PM · 4 hours</span>
+      <div class="card-title">🎡 Tivoli Gardens</div>
+      <div class="card-sub">Rådhuspladsen 4 · Opposite Copenhagen Central Station · 5-min walk from Kongens Nytorv</div>
+      <div class="infobox">
+        <strong>Why this works perfectly:</strong> Tivoli is the world's second-oldest amusement park and directly inspired Walt Disney. Your 5-year-old will love the Hans Christian Andersen boat ride and carousel; your 10-year-old can tackle the roller coasters. The park is compact enough to do in half a day without feeling rushed. Crowds are lighter 11 AM–1 PM before the post-lunch wave.
+      </div>
+      <div class="tip">
+        <strong>Book tickets in advance:</strong> Entry ~150 DKK/adult, children under 8 free. Unlimited ride wristbands ~250 DKK/person. Buy online to skip the gate queue. The <strong>Copenhagen Card</strong> (24-hr, ~700 DKK for 1 adult) covers Tivoli entry + unlimited transport + 80+ attractions.
+      </div>
+      <ul class="dots" style="margin-top:10px">
+        <li>Hans Christian Andersen Boat Ride — fairytale dark ride, perfect for both ages</li>
+        <li>Rutschebanen — legendary 100-year-old wooden roller coaster (120 cm min for front car)</li>
+        <li>Aquila swing ride — your 10-year-old will love it</li>
+        <li>Vintage carousel and bumper cars — great for the 5-year-old</li>
+        <li>Lunch inside at the German Beer Keller (generous kid portions) or grab a hot dog at DØP just outside</li>
+      </ul>
+    </div>
+
+    <div class="card accent-blue">
+      <span class="badge bg-blue">3:30 PM – 5:00 PM · 1.5 hours</span>
+      <div class="card-title">⛵ Nyhavn Canal</div>
+      <div class="card-sub">10-min walk from Tivoli · Or metro 1 stop to Kongens Nytorv</div>
+      <div class="infobox">
+        Copenhagen's iconic colourful canal lined with 17th-century townhouses and old wooden ships. Get ice cream from Vaffelbageren, sit on the waterfront, let the kids watch the boats. Option: 1-hour canal boat tour (~120 DKK/adult, children under 12 free with Copenhagen Card) — covers the Little Mermaid statue while everyone rests their legs.
+      </div>
+      <div class="warn">⏰ Leave Nyhavn by 5:00 PM sharp. Metro M2 back to airport is 13 minutes. Aim to reach airport departures by 5:45 PM for the 6:30 PM check-in cutoff.</div>
+    </div>
+
+    <div class="card" style="background:var(--bg2)">
+      <div class="card-title">🍴 Food options</div>
+      <ul class="dots">
+        <li><strong>DØP</strong> (near the Round Tower) — organic hot dogs, a local institution</li>
+        <li><strong>Juno the Bakery</strong> (near Nyhavn) — the best cardamom rolls in Copenhagen</li>
+        <li><strong>Tivoli food stalls</strong> — pricier but convenient; kids' meals ~80 DKK</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===================== LISBON ===================== -->
+  <div id="lisbon" class="tab-pane">
+    <div class="card accent-green">
+      <span class="badge bg-green">✈ Arrive Lisbon 10:05 PM · Aug 15</span>
+      <div class="card-title">🇵🇹 Lisbon · Aug 16, 17 & 18 morning</div>
+      <div class="card-sub">3 full days + a morning — Aug 16 and 17 are completely free days; Aug 18 you head to the airport for a 7:40 AM departure to Madrid</div>
+      <div class="warn">⚠️ Your LIS → MAD flight departs 7:40 AM on Aug 18. You need to leave for the airport by 5:45–6:00 AM. Plan Aug 17 evening as a quiet, early night.</div>
+    </div>
+
+    <p class="sec-label">Day 1 — Aug 16 (full day)</p>
+    <div class="card accent-green">
+      <div class="card-title">Belém, Tram 28 & the Oceanarium</div>
+      <ul class="dots">
+        <li><strong>Morning — Belém district:</strong> Jerónimos Monastery first (opens 10 AM, fill up by noon — go early). The Manueline stone carvings look like something from a fantasy novel; kids are genuinely awed. Combined ticket with Belém Tower ~€16/adult, under 12 free.</li>
+        <li><strong>Belém Tower:</strong> 10-min walk from the monastery along the river. Iconic 16th-century fortress — climb the narrow tower for Tagus river views.</li>
+        <li><strong>Lunch:</strong> Pastéis de Belém bakery — the original custard tart, made since 1837. Join the queue; it moves fast and it's worth every minute. Get a table inside and order coffee.</li>
+        <li><strong>Afternoon — Tram 28:</strong> Catch it at the Figueira stop and ride through the winding cobblestone alleys of Alfama up to the Miradouro da Graça viewpoint. One of the great urban experiences in Europe — tight, loud, hot in August, and the kids will love every second.</li>
+        <li><strong>Late afternoon — Lisbon Oceanarium</strong> (Parque das Nações): One of the best aquariums in Europe — a massive central ocean tank visible from four sides. Your 5-year-old will be completely transfixed. Pre-book online; ~€20/adult, ~€15/child.</li>
+        <li><strong>Evening:</strong> Dinner in Parque das Nações neighbourhood (modern, walkable, less touristy than Alfama) or take the metro back to Baixa-Chiado for dinner in the Príncipe Real area.</li>
+      </ul>
+    </div>
+
+    <p class="sec-label">Day 2 — Aug 17 (full day)</p>
+    <div class="card accent-blue">
+      <div class="card-title">Sintra day trip (highly recommended) + Fado evening</div>
+      <ul class="dots">
+        <li><strong>Morning — Sintra day trip:</strong> 40-min train from Rossio Station (central Lisbon). <strong>Pre-book Pena Palace timed entry now at parquesdesintra.pt</strong> — this is non-negotiable in August, it sells out weeks ahead. The palace looks like a Disney castle painted in yellow and red, sitting on a hilltop in mist. Kids react as if they've walked into a fairy tale. Allow 2 hours at Pena Palace.</li>
+        <li><strong>Moorish Castle</strong> (free, 20-min walk from Pena): Ancient battlements with views over the Atlantic. Your 10-year-old will scramble up the towers; your 5-year-old will need a hand on the steep paths but will love the drama of it.</li>
+        <li><strong>Lunch in Sintra town:</strong> The village at the bottom has good restaurants — try Casa Piriquita for travesseiros (puff pastry rolls) or Incomum by Luis Santos for proper Portuguese lunch.</li>
+        <li><strong>Return to Lisbon by 4–5 PM</strong> by train from Sintra station.</li>
+        <li><strong>Evening — Fado dinner:</strong> Book a restaurant with live fado performance — <strong>Casa de Linhares</strong> (Alfama, slightly more theatrical) or <strong>Clube de Fado</strong> (more intimate, musicians are excellent). Both welcome families; kids are generally captivated by the raw emotion of fado even without understanding the words. Book well in advance for August.</li>
+      </ul>
+      <div class="tip">If Sintra feels like too much given the early departure next morning, swap it for a relaxed Cascais day (40-min coastal train from Cais do Sodré) — beautiful beach town, kids swim, you have a seafood lunch by the ocean, home by 4 PM for an early night.</div>
+    </div>
+
+    <p class="sec-label">Aug 18 morning (early departure day)</p>
+    <div class="card accent-amber">
+      <span class="badge bg-amber">⏰ Flight departs 7:40 AM — airport by 6:00 AM</span>
+      <div class="card-title">Short morning in Lisbon before airport</div>
+      <div class="infobox">
+        Your flight to Madrid departs at 07:40 AM, so realistically you need to leave your accommodation by 5:45–6:00 AM. This is an early alarm — pack the night before, lay out clothes, have everything ready. No meaningful sightseeing is possible this morning.<br><br>
+        <strong>What to do:</strong> Many Portuguese bakeries open at 7–8 AM, but you'll be past the airport by then. Pack snacks from the night before, or grab something at Lisbon airport (LIS Terminal 1 has a good café past security). The kids will likely sleep in the taxi and then on the plane.
+      </div>
+      <div class="warn">⚠️ Book a taxi or rideshare the night before — don't rely on apps at 5:30 AM in August. Ask your accommodation to arrange a transfer, or book through a service like Welcome Pickups in advance. Budget ~€15–20 for the airport transfer.</div>
+    </div>
+
+    <div class="card" style="background:var(--bg2)">
+      <div class="card-title">🍽️ Best Lisbon restaurants for families</div>
+      <ul class="dots">
+        <li><strong>Time Out Market</strong> (Cais do Sodré) — the city's best food hall; get a table and order from multiple stalls. Perfect for kids who want to pick. Grilled octopus, codfish croquettes, pastéis. Open from noon.</li>
+        <li><strong>A Cevicheria</strong> (Príncipe Real) — creative Portuguese seafood. Excellent for adults; the 10-year-old will be adventurous here.</li>
+        <li><strong>Solar dos Presuntos</strong> (Rossio) — classic tasca with excellent bacalhau dishes. Family-friendly, good portions.</li>
+        <li><strong>LX Factory Sunday Market</strong> (if Aug 16 is a Sunday) — food stalls, local designers, street art, a great morning atmosphere with kids.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===================== MADRID LAYOVER ===================== -->
+  <div id="madrid" class="tab-pane">
+    <div class="card accent-spain">
+      <span class="badge bg-spain">🇪🇸 Aug 18 · Air Europa UX 1152 + UX 1025</span>
+      <div class="card-title">Madrid Layover — 6h 35min · A proper half-day in the city</div>
+      <div class="card-sub">Land Madrid T2 at 9:55 AM · Depart Madrid T2 at 4:30 PM · Both flights on same Air Europa booking — bags checked through to Paris Orly</div>
+      <div class="infobox">
+        <strong>The key advantage:</strong> Because both UX 1152 and UX 1025 are on the same Air Europa booking, your bags are automatically checked through to Paris Orly. You walk off the plane, clear the arrivals hall, and go straight into the city — no bag collection, no re-check-in. This turns 6.5 hours into a genuinely excellent Madrid morning.
+      </div>
+    </div>
+
+    <p class="sec-label">Time breakdown — honest accounting</p>
+    <div class="card accent-spain">
+      <div class="time-block">
+        <div class="time-label">9:55 AM</div>
+        <div class="time-content"><strong>Land Madrid Terminal 2.</strong> Schengen arrival from Lisbon — no passport control. Walk straight to metro.</div>
+      </div>
+      <div class="time-block">
+        <div class="time-label">10:15 AM</div>
+        <div class="time-content"><strong>Board Metro Line 8</strong> (Pink Line) from Aeropuerto T1-T2-T3 station. ~20 min to Nuevos Ministerios. €4.50/person including airport supplement.</div>
+      </div>
+      <div class="time-block">
+        <div class="time-label">10:35 AM</div>
+        <div class="time-content"><strong>Arrive Nuevos Ministerios.</strong> Transfer Line 10 (1 stop) to Retiro, or walk ~12 min south to the park entrance.</div>
+      </div>
+      <div class="time-block">
+        <div class="time-label">10:50 AM</div>
+        <div class="time-content"><strong>Retiro Park + Prado Museum area.</strong> ~3 hours 15 min of usable time before you need to head back.</div>
+      </div>
+      <div class="time-block">
+        <div class="time-label">2:05 PM</div>
+        <div class="time-content"><strong>Leave Retiro</strong> and head back to metro.</div>
+      </div>
+      <div class="time-block">
+        <div class="time-label">2:30 PM</div>
+        <div class="time-content"><strong>Back at Terminal 2.</strong> Since bags are checked through, you only need to clear security. Air Europa check-in closes 45 min before departure = 3:45 PM. You have ample buffer.</div>
+      </div>
+      <div class="time-block">
+        <div class="time-label">4:30 PM</div>
+        <div class="time-content"><strong>Depart Madrid</strong> on UX 1025 to Paris Orly.</div>
+      </div>
+      <div class="time-block">
+        <div class="time-label">6:25 PM</div>
+        <div class="time-content"><strong>Arrive Paris Orly</strong> — full evening ahead. ✅</div>
+      </div>
+    </div>
+
+    <p class="sec-label">What to do with ~3 hours in Madrid</p>
+    <div class="card accent-spain">
+      <span class="badge bg-spain">⭐ Primary stop — both ages love this</span>
+      <div class="card-title">🌳 Parque del Buen Retiro</div>
+      <div class="card-sub">Metro: Retiro station (Line 2) · Free entry · UNESCO World Heritage Site since 2021</div>
+      <div class="infobox">
+        Madrid's most beloved park — 125 hectares of formal gardens, shaded promenades, fountains, and a large artificial lake. Perfect for two kids who've been on planes since 5:45 AM and need to run around. This is exactly where locals come with children on a Tuesday morning and the atmosphere is relaxed and genuine.
+      </div>
+      <ul class="dots" style="margin-top:10px">
+        <li><strong>Estanque Grande del Retiro (the lake):</strong> Rent a rowing boat for 45 minutes (~€6/boat, fit 3 people). Your 10-year-old can take an oar. The Alfonso XII monument across the water is spectacular. Kids universally love this.</li>
+        <li><strong>Palacio de Cristal</strong> (Crystal Palace): A stunning Victorian glass-and-iron pavilion built in 1887, currently used as a contemporary art exhibition space. Free to enter. Even if there's no interesting exhibition, the building itself is extraordinary — kids react to the scale and the light.</li>
+        <li><strong>Playgrounds:</strong> Several throughout the park, well-maintained. Your 5-year-old gets to run free after the morning flight.</li>
+        <li><strong>Monument to the Fallen Angel:</strong> Near the Rose Garden — the only public monument in the world dedicated to the devil (Lucifer's fall from heaven). Your 10-year-old will find this delightfully strange. It sits exactly 666 metres above sea level — tell them that and watch the reaction.</li>
+        <li><strong>Street performers and musicians:</strong> The main promenades always have buskers and performers in August mornings. Kids stop and watch.</li>
+      </ul>
+      <div class="tip">Buy breakfast inside the park at one of the outdoor kiosks — <em>tostada con tomate</em> (bread rubbed with tomato and olive oil) and <em>café con leche</em> is the quintessential Madrid morning. €3–4 per person. The kids will want churros — there's a kiosk near the lake.</div>
+    </div>
+
+    <div class="card accent-spain">
+      <span class="badge bg-spain">Optional — if energy allows</span>
+      <div class="card-title">🎨 Prado Museum (exterior + quick visit)</div>
+      <div class="card-sub">5-min walk from Retiro Park's western edge · Children under 18 always free</div>
+      <div class="infobox">
+        The Prado is right next to Retiro — if your 10-year-old has any interest in art or history, a focused 45-minute visit is doable. Children under 18 enter free. Don't try to see everything; go directly to Velázquez's <em>Las Meninas</em> (Room 12) — arguably the most famous painting in Spain, and genuinely mind-bending even for children who aren't museum people. Then Goya's <em>Saturn Devouring His Son</em> (Room 67) — your 10-year-old will not forget it.<br><br>
+        Skip the Prado entirely if the kids are tired or cranky — the park is the real star of this layover and you shouldn't feel obligated.
+      </div>
+    </div>
+
+    <div class="card accent-spain">
+      <div class="card-title">🍽️ Lunch in Retiro before heading back</div>
+      <ul class="dots">
+        <li><strong>El Brillante</strong> (just outside the Prado, Glorieta del Emperador Carlos V) — legendary Madrid bar famous for its <em>bocadillo de calamares</em> (squid sandwich). A Madrid institution. Kids who like seafood will love it; even the bread alone is excellent.</li>
+        <li><strong>Restaurante Jardines del Retiro</strong> (inside the park) — sit-down terrace restaurant. Pricier but lovely setting. Good for a proper lunch if you want to stay in the park.</li>
+        <li><strong>Park kiosks</strong> — sandwiches, drinks, ice cream. Fast and easy, keeps you in the park longer.</li>
+      </ul>
+      <div class="warn">⏰ Be back at the metro by 2:05 PM at the latest. The journey from Retiro to Terminal 2 takes about 25 minutes. You want to be through security and at your gate well before 3:45 PM (when check-in closes).</div>
+    </div>
+
+    <div class="card" style="background:var(--bg2)">
+      <div class="card-title">📍 Getting around Madrid — metro details</div>
+      <div class="infobox" style="margin-top:0">
+        <strong>From airport:</strong> Metro Line 8 (Pink) · Aeropuerto T1-T2-T3 → Nuevos Ministerios · ~20 min · €4.50/person (includes €3 airport supplement)<br>
+        <strong>To Retiro Park:</strong> At Nuevos Ministerios transfer to Line 10 (1 stop to Gregorio Marañón, then walk) — or walk 12 min south from Nuevos Ministerios along Paseo de la Castellana. Walking is easier with kids and the boulevard is beautiful.<br>
+        <strong>Return:</strong> Same route in reverse. Line 8 from Nuevos Ministerios back to the airport. Keep your metro card — it's the same ticket back.<br>
+        <strong>Cost for 3 people round trip:</strong> ~€27 total (€4.50 × 3 × 2)
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== PARIS + DISNEY ===================== -->
+  <div id="paris" class="tab-pane">
+    <div class="card accent-purple">
+      <span class="badge bg-purple">✈ Arrive Paris Orly 6:25 PM · Aug 18</span>
+      <div class="card-title">🇫🇷 Paris — Aug 18 (evening arrival) through Aug 23</div>
+      <div class="card-sub">Aug 18 evening: settle in · Aug 19: Paris city day · Aug 20–22: 3 days Disneyland · Aug 23: fly Porto</div>
+    </div>
+
+    <p class="sec-label">Aug 18 evening — arrival</p>
+    <div class="card accent-purple">
+      <div class="card-title">Arrive Orly 6:25 PM — relaxed first evening</div>
+      <div class="infobox">
+        You land at 6:25 PM, collect bags (they were checked through from Lisbon), and head to your friend's place near Orly. This is a transit evening — no sightseeing agenda. Get settled, do a grocery run if needed, feed the kids a simple dinner, and have an early night. Everyone needs to be rested for the Paris city day tomorrow and three days of Disney after that.
+      </div>
+      <div class="tip">Pick up basics at a supermarket near your friend's: Monoprix or Carrefour City. Stock the fridge with croissants, butter, jam, and orange juice for the next morning — a Paris breakfast at home before the Eiffel Tower is half the experience.</div>
+    </div>
+
+    <hr>
+    <p class="sec-label">Aug 19 — Paris city day</p>
+    <div class="card accent-purple">
+      <div class="card-title">🗼 Paris with kids — the best one-day itinerary</div>
+    </div>
+
+    <div class="card accent-purple">
+      <span class="badge bg-purple">9:00 AM – 12:00 PM</span>
+      <div class="card-title">Eiffel Tower + Trocadéro</div>
+      <ul class="dots">
+        <li><strong>Book timed entry NOW</strong> at book.toureiffel.paris — August tickets sell out 4–6 weeks in advance. The 2nd floor is enough for kids and has shorter queues than the summit; the view is just as spectacular. Aim for the 9:00 or 9:30 AM entry slot to beat the crowds and the heat.</li>
+        <li><strong>Trocadéro Gardens:</strong> Walk across the Pont d'Iéna after your tower visit and climb the Trocadéro steps for the classic postcard view with the tower behind you. The fountains at Trocadéro are running in August — your 5-year-old will want to paddle.</li>
+        <li>The walk from Orly to the tower is ~30 min by metro (RER B to Antony, then Line 6 to Bir-Hakeim) or ~25 min by Uber/taxi. With two kids and a morning start, a taxi is worth the ~€20.</li>
+      </ul>
+    </div>
+
+    <div class="card accent-purple">
+      <span class="badge bg-purple">12:00 PM – 2:00 PM</span>
+      <div class="card-title">Lunch + Jardin du Luxembourg</div>
+      <ul class="dots">
+        <li><strong>Lunch:</strong> Head to Saint-Germain-des-Prés. Grab a crêpe from a street vendor on Rue de Buci, or sit down at Café de Flore or Les Deux Magots (pricier, but the setting is iconic and the croque-monsieur is excellent for kids).</li>
+        <li><strong>Jardin du Luxembourg:</strong> 10-min walk from Saint-Germain. One of the best park experiences in Paris for families — formal French gardens with a large basin where children rent miniature wooden sailboats and push them with long sticks (€4, your 5-year-old will do this for 45 minutes happily). There's also a <em>Théâtre des Marionnettes</em> (puppet theatre, performances in French but universally understood by children), a carousel, swings, and a sandbox. Free to enter the park.</li>
+      </ul>
+    </div>
+
+    <div class="card accent-purple">
+      <span class="badge bg-purple">2:30 PM – 5:00 PM</span>
+      <div class="card-title">Seine walk + Notre-Dame</div>
+      <ul class="dots">
+        <li><strong>Seine walk:</strong> Stroll east from the Luxembourg area towards the river and walk along the Left Bank towards Notre-Dame (~2 km, completely flat, beautiful). Cross onto Île de la Cité.</li>
+        <li><strong>Notre-Dame de Paris:</strong> The cathedral's exterior restoration is complete and it's once again one of the most beautiful facades in Europe. The interior reopened in 2024 — check current access before visiting. Even from the outside, the Gothic architecture is extraordinary and kids respond to the scale.</li>
+        <li><strong>Île Saint-Louis:</strong> The tiny island behind Notre-Dame has one main street lined with independent shops and the legendary <strong>Berthillon</strong> ice cream. Get two scoops; it's the best ice cream in Paris. End the afternoon here.</li>
+      </ul>
+    </div>
+
+    <div class="card accent-purple">
+      <span class="badge bg-purple">Evening</span>
+      <div class="card-title">Early dinner + early bed before Disney</div>
+      <div class="infobox">
+        Tomorrow is Day 1 at Disneyland — you need to be at the park by 8:30 AM for Extra Magic Time (if staying Disney hotel) or 8:45 AM for general rope drop. Get dinner by 7 PM and kids in bed by 9 PM. A simple dinner near your friend's place — pizza, pasta, or a local brasserie — is perfect. Don't try to squeeze in another Paris landmark tonight.
+      </div>
+    </div>
+
+    <hr>
+    <p class="sec-label">Aug 20, 21, 22 — 3 days at Disneyland Paris</p>
+
+    <div class="card accent-coral">
+      <span class="badge bg-coral">⚠️ August = peak crowds. Strategy matters.</span>
+      <div class="card-title">August at Disneyland Paris — what to expect</div>
+      <div class="infobox">
+        August is the park's busiest month. The new World of Frozen (opened March 2026 in Disney Adventure World) is driving record summer attendance. With 3 days, you have the luxury of a relaxed pace — you don't need to rush or stress. The key is rope drop discipline on the first two days.
+      </div>
+      <div class="tip">
+        <strong>Three-day strategy:</strong> Day 1 = Disneyland Park (the castle park), hit the biggest rides early. Day 2 = Disney Adventure World (World of Frozen + new areas), rope drop here. Day 3 = relaxed revisit of both, character meets, shows, anything missed. Three days means you can enjoy the evening shows every night — Disney Illuminations (castle light show) is the undisputed highlight of the whole resort.
+      </div>
+    </div>
+
+    <div class="card accent-purple">
+      <span class="badge bg-purple">Day 1 — Aug 20 · Disneyland Park (castle park)</span>
+      <div class="card-title">The "wow" day — iconic rides and the evening show</div>
+      <ul class="dots">
+        <li><strong>Arrive by 8:30–8:45 AM</strong> (park opens 9 AM in August). Be through security and at the gates early. The first 90 minutes are genuinely magical — short queues, cool morning air, half the crowd still in their hotels.</li>
+        <li><strong>Rope drop order:</strong> Big Thunder Mountain first (102 cm min height — your 10-year-old is in; check your 5-year-old) → Peter Pan's Flight (both ages, always the longest queue in the park, must do early) → Phantom Manor (haunted house, both ages love it, genuinely atmospheric).</li>
+        <li><strong>Mid-morning:</strong> Pirates of the Caribbean (always air-conditioned, lower wait in late morning, both ages). Buzz Lightyear Laser Blast (interactive shooter ride, your 10-year-old will be competitive about the score).</li>
+        <li><strong>For the 5-year-old — Fantasyland:</strong> Dumbo the Flying Elephant, Mad Hatter's Tea Cups, the Carousel, It's a Small World (if open). This area is perfect for little ones and rarely has long waits.</li>
+        <li><strong>Midday break (1–3 PM):</strong> Critical with a 5-year-old in August heat. Return to your friend's if close enough, or find a shaded sit-down restaurant inside the park. Pirates of the Caribbean has an attached air-conditioned restaurant (Blue Lagoon) — book in advance for a magical setting right on the water where the boats float past.</li>
+        <li><strong>Afternoon:</strong> La Tanière du Dragon — the dragon sleeping underneath Sleeping Beauty Castle. Free, no queue, eerie and spectacular. Your kids will talk about this all day.</li>
+        <li><strong>Evening:</strong> Disney Stars on Parade (~5:30 PM, check app). Then stay for <strong>Disney Illuminations</strong> — the castle light show runs around 10:30–11 PM in August. This is the single best thing at Disneyland Paris. Position yourselves slightly back from the hub (not pressed against the front railing) for the full view. Both kids will remember this forever.</li>
+      </ul>
+    </div>
+
+    <div class="card accent-purple">
+      <span class="badge bg-purple">Day 2 — Aug 21 · Disney Adventure World</span>
+      <div class="card-title">World of Frozen + new Disney Adventure World</div>
+      <div class="infobox">
+        Disney Adventure World was completely relaunched on March 29, 2026 with World of Frozen, a new Tangled ride, Adventure Bay, and a large lake with its own nighttime spectacular. This is the most exciting new development at Disneyland Paris in years. Go here on Day 2 when everyone is energised after a rest night.
+      </div>
+      <ul class="dots" style="margin-top:10px">
+        <li><strong>Rope drop (arrive 8:30 AM):</strong> Go directly to <strong>Frozen Ever After</strong> — the brand-new headline ride set in Arendelle. This will have the longest queue in the park all summer. Hit it within the first 10 minutes of opening.</li>
+        <li><strong>Next:</strong> The new Tangled-inspired ride (debuted March 2026) → <strong>Ratatouille: L'Aventure Totalement Toquée de Rémy</strong> — a fantastically fun ride through the Ratatouille movie. Both kids will adore it. Book Premier Access (~€15) if the queue is already building.</li>
+        <li><strong>Avengers Assemble: Flight Force:</strong> For your 10-year-old — the best roller coaster at the resort. Surprisingly short wait given how good it is.</li>
+        <li><strong>Crush's Coaster</strong> (Finding Nemo): spinning coaster, 107 cm min height. Check if your 5-year-old qualifies. Your 10-year-old will want to ride it twice.</li>
+        <li><strong>A Celebration in Arendelle:</strong> Outdoor Frozen show by the new fjord lake. Beautiful, emotional, great for both ages. Check the app for show times.</li>
+        <li><strong>Evening lake show:</strong> The new nighttime spectacular on Disney Adventure World's lake runs at the same time as Disney Illuminations in Disneyland Park. Since you saw Illuminations last night, watch the lake show tonight — brand new in 2026.</li>
+      </ul>
+    </div>
+
+    <div class="card accent-purple">
+      <span class="badge bg-purple">Day 3 — Aug 22 · Relaxed revisit + character meets</span>
+      <div class="card-title">The leisurely day — no stress, re-ride favourites</div>
+      <div class="infobox">
+        With three days, Day 3 is gift — no must-do agenda. Re-ride whatever your kids loved most, take time for character meet-and-greets (which require patience that you don't have on rope-drop days), see Mickey and the Magician indoor show, explore areas you walked past, and soak in the atmosphere.
+      </div>
+      <ul class="dots" style="margin-top:10px">
+        <li><strong>Mickey and the Magician</strong> (Disneyland Park, indoor show): Excellent stage show with classic Disney characters and real magic effects. Air-conditioned — perfect for the hottest part of the afternoon. Genuinely impressive for both ages.</li>
+        <li><strong>Character meet-and-greets:</strong> Mickey, Stitch, and the Princess Pavilion all use virtual queues on the Disneyland Paris app. Open the app 5 minutes before the virtual queue launches; use mobile data rather than park Wi-Fi (mobile is faster). Get your picks before 9:30 AM or they'll be gone.</li>
+        <li><strong>Re-ride your kids' favourites</strong> from Days 1 and 2. Queues are often shorter on weekday mornings — Aug 22 is a Saturday, so arrive early to beat the local weekend crowd surge.</li>
+        <li><strong>Disney Illuminations one final time</strong> — different spot tonight, same magic. It never gets old.</li>
+      </ul>
+      <div class="infobox"><strong>Getting to Disneyland from Orly:</strong> RER B from Orly (via Antony or CDG connection) to Marne-la-Vallée–Chessy — right at the park gates. ~50–60 min. Or an Uber/taxi from Orly is ~50 min and €60–80 for the family — worth it on rope-drop mornings when you need to arrive at a precise time.</div>
+    </div>
+
+    <hr>
+    <p class="sec-label">Aug 23 — fly Paris → Porto (evening)</p>
+    <div class="card accent-blue">
+      <div class="card-title">✈ ORY → Porto (OPO) · Transavia · Evening departure</div>
+      <div class="infobox">
+        Book an <strong>evening Transavia departure</strong> (7–9 PM from Orly) to keep the whole day in Paris. This gives you a final relaxed morning — sleep in after three Disney days, grab croissants, pack calmly. Arrive Porto ~9:30–11 PM, check into your accommodation, bed.<br><br>
+        <strong>Book at:</strong> transavia.com · <strong>Expected price:</strong> ~€70–120/person · ~$230–400 for 3 passengers
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== PORTO + DRIVE SOUTH ===================== -->
+  <div id="porto" class="tab-pane">
+    <p class="sec-label">Porto · Aug 24–25 (2 nights, 2 full days)</p>
+    <div class="card accent-amber">
+      <span class="badge bg-amber">2 nights is the perfect amount for Porto</span>
+      <div class="card-title">🍷 Porto — compact, beautiful, ideal for families</div>
+      <div class="infobox">
+        Porto is small and walkable — you can see all the highlights in 2 full days without ever feeling rushed. Arrive evening Aug 23, full days Aug 24–25, drive south morning Aug 26.
+      </div>
+    </div>
+
+    <div class="card accent-amber">
+      <span class="badge bg-amber">Day 1 — Aug 24</span>
+      <div class="card-title">Ribeira, Dom Luís Bridge & Port wine lodges</div>
+      <ul class="dots">
+        <li><strong>Morning — Ribeira waterfront:</strong> The medieval riverside district, a UNESCO World Heritage Site. Walk along the quay, watch the traditional rabelo boats on the Douro, eat <em>pastéis de bacalhau</em> (salt cod pastries) from a street vendor. The colourful medieval buildings stacked up the hillside behind you are exactly what you imagined Portugal to look like.</li>
+        <li><strong>Dom Luís I Bridge walk:</strong> Climb to the upper deck (pedestrian walkway) for the best panoramic views over Porto and the Douro river valley. Completely free, slightly exposed — your 10-year-old will love it; manageable for the 5-year-old with a hand held on the narrow parts.</li>
+        <li><strong>Vila Nova de Gaia — Port wine lodges:</strong> Cross the bridge to the south bank. Take the cable car (~€6/person each way) down from the bridge for spectacular views. Tour Graham's or Sandeman's port wine lodge (~€15/adult, children often free) — the cellars are cool, fascinating, and the guides are excellent. Your kids get fresh grape juice while you taste.</li>
+        <li><strong>Clérigos Tower:</strong> 225 steps up the baroque bell tower for panoramic views over Porto's rooftops. €8/adult, €4/child. Worth the climb.</li>
+        <li><strong>Evening dinner:</strong> Cantina 32 (Rua das Flores 32) — superb Portuguese petiscos (sharing plates) in a relaxed, atmospheric setting. Book ahead.</li>
+      </ul>
+    </div>
+
+    <div class="card accent-amber">
+      <span class="badge bg-amber">Day 2 — Aug 25</span>
+      <div class="card-title">Livraria Lello, São Bento & Matosinhos beach</div>
+      <ul class="dots">
+        <li><strong>Livraria Lello:</strong> One of the most beautiful bookshops in the world — a neo-Gothic interior with a famous curved red staircase. Pre-book entry tickets online (€8, redeemable against any purchase). Your kids will be genuinely awestruck.</li>
+        <li><strong>São Bento Station:</strong> 5-min walk from Lello. The station concourse is covered in 20,000 azulejo tiles depicting Portuguese history. Free to enter. One of the most beautiful train stations in Europe — don't miss it.</li>
+        <li><strong>Matosinhos beach:</strong> 20 min by metro (Line A to Matosinhos Sul). Porto's best local beach — sandy, broad, and the seafood restaurants on Rua Heróis de França directly behind the beach are excellent. Lunch at A Gavina or Marisqueira Matosinhos: grilled whole fish, chips, cold Vinho Verde. Perfect family lunch after a morning of culture.</li>
+        <li><strong>Optional — Serralves Museum:</strong> Contemporary art museum with enormous, gorgeous gardens full of outdoor sculptures and lawns. Kids love exploring the grounds. €20/adult, under 12 free. Good for a late afternoon wander before dinner.</li>
+        <li><strong>Pack tonight</strong> for the early drive south tomorrow.</li>
+      </ul>
+    </div>
+
+    <hr>
+    <p class="sec-label">Aug 26 — The drive south: Porto → coast → overnight</p>
+
+    <div class="card accent-green">
+      <span class="badge bg-green">Full driving day — ~5 hours driving + stops</span>
+      <div class="card-title">🚗 Porto → Óbidos → Sintra → Restaurante da Adraga → Nazaré overnight</div>
+      <div class="card-sub">Pick up rental car at Porto Airport (OPO) · ~300 km total today</div>
+    </div>
+
+    <div class="card accent-green">
+      <div class="card-title">Stop 1: Óbidos — 1h 45min from Porto</div>
+      <div class="infobox">
+        A perfectly preserved medieval walled village — walk through the main arch gate into cobblestone streets, whitewashed houses with yellow and blue trim, and a hilltop castle. Kids feel like they've walked into a fairy tale. Buy <em>ginjinha</em> (sour cherry liqueur) served in an edible chocolate cup from one of the street-level window bars — you sip, the kids eat the chocolate cup. Spend 1.5–2 hours, then continue south.
+      </div>
+    </div>
+
+    <div class="card accent-green">
+      <div class="card-title">Stop 2: Sintra — 1 hour from Óbidos (optional)</div>
+      <div class="infobox">
+        If you did Sintra on Aug 17 from Lisbon, skip it today and drive directly to Adraga. If you didn't do Sintra yet, stop here — pre-book Pena Palace timed entry at parquesdesintra.pt. Arrive by 11 AM, allow 2 hours at the palace, leave by 1 PM before the crowds peak. The drive from Sintra to Restaurante da Adraga takes only 15 minutes.
+      </div>
+    </div>
+
+    <div class="card accent-coral">
+      <span class="badge bg-coral">🎯 The centrepiece stop — book ahead now</span>
+      <div class="card-title">🌊 Restaurante da Adraga — lunch on a wild Atlantic beach</div>
+      <div class="card-sub">Rua da Praia da Adraga, Colares · 15 min west of Sintra · Established 1905 · ☎ +351 219 280 028</div>
+      <div class="infobox">
+        A family-run seafood restaurant sitting directly on one of Portugal's most dramatic wild beaches — golden sand flanked by black volcanic cliffs, massive Atlantic surf, and views of the Sintra hills. The drive down the valley to the beach is already stunning.<br><br>
+        <strong>Must-order:</strong> <em>Polvo grelhado</em> (grilled octopus — the standout dish), <em>dourada grelhada</em> (grilled sea bream presented whole at the table before cooking), and the Pavlova dessert. Kids can have simple grilled fish with chips — they will eat it all.<br><br>
+        <strong>⚠️ CRITICAL: Pre-reserve by phone now.</strong> They fill up weeks ahead in August. Aim for a 1:00–2:00 PM lunch slot. Call +351 219 280 028 or email them directly.
+      </div>
+      <div class="tip">After lunch: spend an hour on Praia da Adraga. The water is cold Atlantic (~18°C) with powerful waves — good for rock pool exploring and paddling, not serious swimming with a 5-year-old. The clifftop walk north towards Praia Grande takes 20 min and has spectacular views.</div>
+    </div>
+
+    <div class="card accent-blue">
+      <span class="badge bg-blue">Overnight stop</span>
+      <div class="card-title">🌊 Overnight in Nazaré — 45 min from Adraga</div>
+      <div class="card-sub">Or Peniche (30 min from Adraga) for a grittier, more authentic fishing-port feel</div>
+      <div class="infobox">
+        <strong>Nazaré</strong> is the standout choice: famous for the world's biggest waves (at Praia do Norte — even in August you can watch surfers from the clifftop Sítio viewpoint above town). The main family beach (Praia da Nazaré) in the bay below is calmer and perfect for swimming. The town has a funicular, dried fish hanging from every doorway, and a genuine Portuguese character that feels nothing like a resort. <strong>Hotel Mar Bravo</strong> is right on the seafront and solid for families.<br><br>
+        <strong>Peniche</strong> is a working fishing port — smaller, fewer tourists, outstanding seafood straight off the boats. Either works perfectly as a one-night stop.
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== ALGARVE ===================== -->
+  <div id="algarve" class="tab-pane">
+    <div class="card accent-amber">
+      <span class="badge bg-amber">☀️ Do the Algarve — it's absolutely worth it</span>
+      <div class="card-title">Aug 27 → Lisbon Aug 29 → Sintra Aug 30 → Fly Aug 31</div>
+      <div class="infobox">
+        The Algarve beaches are the best in Europe for families — warm, calm, sheltered water (unlike the cold Atlantic north of Lisbon), dramatic golden cliffs, and sea-cave boat tours. With the car already, the drive is easy. Here's the full schedule.
+      </div>
+    </div>
+
+    <p class="sec-label">Driving times to know</p>
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title">Nazaré → Lisbon</div>
+        <div class="infobox"><strong>Via A8 motorway:</strong> ~1h 30min · 120 km · ~€8 tolls<br>Drive through Lisbon on Aug 27 without stopping — straight to the Algarve.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Lisbon → Lagos (Algarve)</div>
+        <div class="infobox"><strong>Via A2/A22:</strong> ~2h 40min · 300 km · ~€25 tolls<br>Total Nazaré → Lagos in one go: ~4h 15min. Manageable with a break.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Lagos → Lisbon return</div>
+        <div class="infobox"><strong>Via A2:</strong> ~2h 40min · Leave Lagos by 10 AM to be in Lisbon by 1 PM. Gives you a Lisbon afternoon.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Car drop-off</div>
+        <div class="infobox">Return car to <strong>Lisbon Airport (LIS)</strong> on Aug 31 by 5:30 AM for your 7:15 flight. One-way Porto pickup → Lisbon Airport drop-off.</div>
+      </div>
+    </div>
+
+    <p class="sec-label">Where to stay — Lagos is the best family base</p>
+    <div class="card accent-amber">
+      <span class="badge bg-amber">⭐ Best Algarve pick for ages 5 & 10</span>
+      <div class="card-title">Stay in Lagos — 2 nights (Aug 27–28)</div>
+      <div class="infobox">
+        <strong>Why Lagos:</strong> The most beautiful beaches in the Algarve (Praia Dona Ana, Praia do Camilo — sheltered golden coves with dramatic cliffs), a charming authentic old town, and the world-famous Ponta da Piedade sea caves. Less of a resort, more of a real Portuguese town. Perfect for your age mix.<br><br>
+        <strong>For your 5-year-old:</strong> Meia Praia (5 min east of town) — long, flat, shallow, completely calm. Ideal.<br>
+        <strong>For your 10-year-old:</strong> The Ponta da Piedade kayak tour through sea caves — one of the best experiences in Portugal for this age.
+      </div>
+    </div>
+
+    <div class="card accent-amber">
+      <div class="card-title">🏖️ Beaches around Lagos</div>
+      <ul class="dots">
+        <li><strong>Praia Dona Ana</strong> — sheltered golden cove 5 min from town, dramatic rock arches. Arrive early (by 9 AM) in August to get a good spot.</li>
+        <li><strong>Praia do Camilo</strong> — stairs down a cliff face to a smaller, more secluded cove. Gorgeous. Calmer water, less crowded than Dona Ana.</li>
+        <li><strong>Meia Praia</strong> — 4 km of flat sandy beach east of the marina. Shallow, calm water, beach bars. Best for the 5-year-old.</li>
+        <li><strong>Praia de Luz</strong> (20 min west) — calm bay, village atmosphere, excellent restaurants behind the beach. Top family beach in the western Algarve.</li>
+      </ul>
+    </div>
+
+    <div class="card accent-amber">
+      <div class="card-title">🚣 Must-do activities in Lagos</div>
+      <ul class="dots">
+        <li><strong>Ponta da Piedade kayak tour (2–3 hrs):</strong> Paddle through golden sea caves, arches, and grottos at Portugal's most photogenic coastal spot. Your 10-year-old paddles their own kayak; your 5-year-old sits in a double with you. Kayak Lagos offers excellent family tours (~€40/adult, €25/child). <strong>Book at least 1–2 weeks ahead</strong> — sells out in August.</li>
+        <li><strong>Boat tour from Lagos Marina:</strong> 1–2 hr tour through the same sea caves by motor boat. More relaxed option if the kayak feels too ambitious for your 5-year-old that day (~€20/adult, €10/child).</li>
+        <li><strong>Lagos old town:</strong> Walk the medieval town walls, visit the Mercado de Escravos (the first slave market in Europe — sobering history, thoughtfully explained for older kids), and the Igreja de Santo António with its extraordinary gold-gilded interior.</li>
+        <li><strong>Slide & Splash waterpark</strong> (near Lagoa, 30 min east): The best waterpark in the Algarve. Your 10-year-old will spend 3 hours on the speed slides and Black Hole ride; your 5-year-old has a dedicated shallow play zone. Great for a scorching August afternoon (~€35/adult, €25/child).</li>
+      </ul>
+    </div>
+
+    <hr>
+    <p class="sec-label">Full schedule Aug 27–31</p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot amber"></div>
+        <div class="tl-date">Aug 27 — Thursday</div>
+        <div class="tl-title">Nazaré → Lagos · Drive ~4h 15min total</div>
+        <div class="tl-desc">Leave Nazaré by 8:30–9 AM. Drive south through Lisbon on the A2 without stopping (or make a quick coffee stop at a service area). Arrive Lagos by 1–1:30 PM. Check in. Afternoon: Meia Praia beach — calm, flat, shallow water, perfect for both kids after a long drive. Evening: dinner at <strong>Porto de Abrigo</strong> (Lagos marina) — excellent family-friendly seafood. Try the <em>cataplana</em>, a traditional Portuguese seafood stew cooked in a copper clam-shaped pot.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot amber"></div>
+        <div class="tl-date">Aug 28 — Friday</div>
+        <div class="tl-title">Lagos full day — sea caves + beach afternoon</div>
+        <div class="tl-desc"><strong>Morning (pre-booked):</strong> Ponta da Piedade kayak tour — leave the marina at 9 AM before the sun gets too strong. 2–3 hours paddling through arches and grottos. Lunch at a clifftop restaurant above Praia Dona Ana. <strong>Afternoon:</strong> Praia de Luz — calm bay with shallow water, perfect for tired legs. Your 5-year-old can swim safely. Your 10-year-old can rent a paddleboard. <strong>Evening:</strong> Old town walk, gelato from one of the portside shops, early dinner and early night — long drive tomorrow.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot blue"></div>
+        <div class="tl-date">Aug 29 — Saturday</div>
+        <div class="tl-title">Lagos → Lisbon · Drive back ~2h 40min</div>
+        <div class="tl-desc">Leave Lagos by 9–9:30 AM via A22/A2. Arrive Lisbon midday. Check into Lisbon accommodation (you'll need 1 night here). Afternoon: very relaxed — a walk in Baixa, a pastel de nata from a café, maybe the Museu Nacional do Azulejo (tile museum, short visit, extraordinary collection, both kids respond to the vivid imagery). Evening: final Lisbon dinner — this is the night to book a proper tasca if you haven't already. Alfama neighbourhood, cobblestone alley, traditional Portuguese cooking.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot blue"></div>
+        <div class="tl-date">Aug 30 — Sunday</div>
+        <div class="tl-title">Sintra day trip (if not done) — or Cascais</div>
+        <div class="tl-desc"><strong>Option A — Sintra (if you haven't been):</strong> 40-min train from Rossio station. Pre-book Pena Palace timed entry. Morning at the palace and Moorish Castle, back in Lisbon by 5 PM. The best day trip from Lisbon — don't skip it. <strong>Option B — Cascais (if you did Sintra on Aug 17):</strong> 40-min coastal train from Cais do Sodré. Gorgeous beach town, kids swim, you have a relaxed seafood lunch. Easy, beautiful last day. <strong>Either way:</strong> Early dinner, pack for the flight, and early bed by 9:30 PM.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot gray"></div>
+        <div class="tl-date">Aug 31 — Monday</div>
+        <div class="tl-title">✈ Fly home · LIS → CPH → ORD → SEA</div>
+        <div class="tl-desc"><strong>⚠️ SK 8904 departs 07:15 AM — check-in closes 06:30 AM.</strong> Leave accommodation by 5:00–5:15 AM. Drop car at Lisbon Airport rental desk (open 24hr — confirm with your rental company). Check in, clear security, board. <br>CPH arrival 11:55 AM · SK 943 CPH→ORD departs 13:55 · SK 3508 ORD→SEA departs 17:56 · Arrive Seattle 20:35. Long day — pack plenty of snacks, download movies and games on a tablet the night before.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== FLIGHTS & CHECKLIST ===================== -->
+  <div id="flights" class="tab-pane">
+    <p class="sec-label">Flights already booked ✅</p>
+    <div class="card" style="background:var(--bg2)">
+      <div class="card-title">Confirmed tickets</div>
+      <ul class="dots">
+        <li>✅ <strong>Aug 14:</strong> SK 938 SEA → CPH · 15:55 → 10:10 (+1) · SAS A350 · 9h 15m</li>
+        <li>✅ <strong>Aug 15:</strong> SK 2801 CPH → LIS · 19:10 → 22:05 · SAS · 3h 55m · 9-hr Copenhagen layover</li>
+        <li>✅ <strong>Aug 18:</strong> UX 1152 LIS → MAD · 07:40 → 09:55 · Air Europa B737 MAX 8 · T1→T2</li>
+        <li>✅ <strong>Aug 18:</strong> UX 1025 MAD → ORY · 16:30 → 18:25 · Air Europa B737 · T2→T2 · 6h 35min Madrid layover</li>
+        <li>✅ <strong>Aug 31:</strong> SK 8904 LIS → CPH · 07:15 → 11:55 · TAP (operated) · 3h 40m</li>
+        <li>✅ <strong>Aug 31:</strong> SK 943 CPH → ORD · 13:55 → 16:10 · SAS A350 · 9h 15m</li>
+        <li>✅ <strong>Aug 31:</strong> SK 3508 ORD → SEA · 17:56 → 20:35 · Delta (operated) · 4h 39m</li>
+      </ul>
+      <div class="warn" style="margin-top:12px">⚠️ <strong>Baggage check:</strong> Your outbound SAS tickets (SEA→CPH→LIS) show <strong>0PC</strong> — no checked bag included. Return (LIS→CPH→SEA) shows 1PC included. Verify your SAS booking and add checked baggage for the outbound if needed — much cheaper to do it online before travel than at the airport.<br><br>
+      ✅ <strong>Madrid connection:</strong> Both UX 1152 and UX 1025 are on the same Air Europa booking — bags check through to Paris Orly automatically. No re-check needed in Madrid.</div>
+    </div>
+
+    <p class="sec-label">Flights still to book 🎫</p>
+
+    <div class="card accent-blue">
+      <span class="badge bg-blue">Book now at transavia.com</span>
+      <div class="card-title">✈ ORY → Porto (OPO) · Aug 23 · evening departure</div>
+      <div class="flight-row">
+        <span>Paris Orly ORY</span><span class="arrow">→</span><span>Porto OPO</span>
+        <span class="flight-badge">~2h 20m nonstop</span>
+        <span class="flight-badge">Transavia France</span>
+      </div>
+      <div class="infobox" style="margin-top:10px">
+        <strong>Best option:</strong> Transavia France ORY→OPO — flies daily, multiple times. Book an evening departure (7–9 PM) to keep the whole day free after Disney Day 3.<br>
+        <strong>Expected price:</strong> ~€70–120/person · ~$230–400 for 3 passengers<br>
+        <strong>Book at:</strong> transavia.com directly
+      </div>
+    </div>
+
+    <div class="card accent-amber">
+      <span class="badge bg-amber">Book soon — car availability fills in August</span>
+      <div class="card-title">🚗 Car Rental · Porto Airport → Lisbon Airport · Aug 26–31</div>
+      <div class="infobox">
+        <strong>Pick up:</strong> Porto Airport (OPO) · Aug 26 morning<br>
+        <strong>Drop off:</strong> Lisbon Airport (LIS) · Aug 31 by 5:30 AM (confirm 24hr desk availability)<br>
+        <strong>Book with:</strong> Europcar, Hertz, or Sixt — all have OPO desks. Book directly, not through aggregators.<br>
+        <strong>Car size:</strong> Compact SUV (VW Tiguan class) — 3 people + luggage, comfortable for long drives.<br>
+        <strong>One-way fee:</strong> ~€30–60 extra for OPO→LIS drop-off.<br>
+        <strong>Tolls:</strong> Portuguese tolls are electronic. Confirm the rental includes a Via Verde toll transponder to avoid manual toll fines. Budget ~€60–80 in tolls for the full Porto → Algarve → Lisbon route.
+      </div>
+    </div>
+
+    <hr>
+    <p class="sec-label">📋 Complete booking checklist</p>
+    <div class="card" style="background:var(--bg2)">
+      <div class="card-title">Everything to book — in priority order</div>
+      <ul class="dots">
+        <li>✅ All flights SEA↔Europe — <strong>BOOKED</strong></li>
+        <li>🎫 ORY → OPO (Transavia) Aug 23 evening — <strong>book now at transavia.com</strong></li>
+        <li>🚗 Car rental OPO → LIS one-way Aug 26–31 — <strong>book at europcar.com or hertz.com</strong></li>
+        <li>🗼 Eiffel Tower timed entry (Aug 19) — <strong>book NOW at book.toureiffel.paris — August sells out weeks ahead</strong></li>
+        <li>🎡 Disneyland Paris 3-day tickets (Aug 20–22) — <strong>book at disneylandparis.com</strong></li>
+        <li>🏰 Pena Palace Sintra timed entry — <strong>book at parquesdesintra.pt — sells out in August</strong></li>
+        <li>🌊 Lisbon Oceanarium (Aug 16) — <strong>book at oceanario.pt</strong></li>
+        <li>🚣 Lagos sea cave kayak tour (Aug 28) — <strong>book at kayaklagos.com or GetYourGuide — 1–2 weeks ahead minimum</strong></li>
+        <li>🍽️ Restaurante da Adraga (Aug 26 lunch) — <strong>call now: +351 219 280 028 — essential for August</strong></li>
+        <li>🎭 Fado dinner Lisbon (Aug 17) — <strong>book at casadelinhares.com or clubedefado.pt</strong></li>
+        <li>🚕 Airport taxi Lisbon (Aug 18, 5:45 AM departure) — <strong>book the night before with your accommodation or Welcome Pickups</strong></li>
+        <li>✈️ Check SAS outbound baggage: shows 0PC — add checked bags online before travel if needed</li>
+        <li>🎢 Tivoli Gardens Copenhagen tickets — <strong>book at tivoligardens.com before Aug 15</strong></li>
+        <li>🍽️ Porto dinner reservations — <strong>book Cantina 32 (cantina32.com) for Aug 24</strong></li>
+        <li>🍷 Port wine lodge tour Vila Nova de Gaia — <strong>book at grahams-port.com or sandeman.com for Aug 24</strong></li>
+      </ul>
+    </div>
+
+    <p class="sec-label">Full trip at a glance</p>
+    <div class="card" style="background:var(--bg2)">
+      <div class="card-title">📅 Date-by-date summary</div>
+      <div style="font-size:13px;color:var(--text2);line-height:2.1">
+        <strong style="color:var(--text)">Aug 14 Fri</strong> — Fly SEA → Copenhagen (3:55 PM departure)<br>
+        <strong style="color:var(--text)">Aug 15 Sat</strong> — Land CPH 10:10 AM · Day in Copenhagen (Tivoli + Nyhavn) · Evening fly CPH → Lisbon, land 10:05 PM<br>
+        <strong style="color:var(--text)">Aug 16 Sun</strong> — Lisbon: Belém, Tram 28, Oceanarium<br>
+        <strong style="color:var(--text)">Aug 17 Mon</strong> — Lisbon: Sintra day trip + fado evening<br>
+        <strong style="color:var(--text)">Aug 18 Tue</strong> — Early flight LIS→MAD (7:40 AM) · 6.5hr Madrid layover: Retiro Park + Prado · Evening fly MAD→Paris Orly (arrive 6:25 PM)<br>
+        <strong style="color:var(--text)">Aug 19 Wed</strong> — Paris: Eiffel Tower, Jardin du Luxembourg, Seine walk<br>
+        <strong style="color:var(--text)">Aug 20 Thu</strong> — Disneyland Paris Day 1: Disneyland Park (castle park)<br>
+        <strong style="color:var(--text)">Aug 21 Fri</strong> — Disneyland Paris Day 2: Disney Adventure World (World of Frozen)<br>
+        <strong style="color:var(--text)">Aug 22 Sat</strong> — Disneyland Paris Day 3: relaxed revisit + character meets<br>
+        <strong style="color:var(--text)">Aug 23 Sun</strong> — Paris city morning · Evening fly ORY → Porto (arrive ~10 PM)<br>
+        <strong style="color:var(--text)">Aug 24 Mon</strong> — Porto: Ribeira, Dom Luís Bridge, port wine lodges<br>
+        <strong style="color:var(--text)">Aug 25 Tue</strong> — Porto: Livraria Lello, São Bento, Matosinhos beach<br>
+        <strong style="color:var(--text)">Aug 26 Wed</strong> — Drive south: Óbidos → Sintra → Restaurante da Adraga → Overnight Nazaré<br>
+        <strong style="color:var(--text)">Aug 27 Thu</strong> — Drive Nazaré → Lagos · Afternoon: Meia Praia beach<br>
+        <strong style="color:var(--text)">Aug 28 Fri</strong> — Lagos: Ponta da Piedade kayak caves + Praia de Luz<br>
+        <strong style="color:var(--text)">Aug 29 Sat</strong> — Drive Lagos → Lisbon (2h 40min) · Afternoon in Lisbon<br>
+        <strong style="color:var(--text)">Aug 30 Sun</strong> — Sintra or Cascais day trip · Early dinner + pack · Bed by 9:30 PM<br>
+        <strong style="color:var(--text)">Aug 31 Mon</strong> — ⚠️ Leave by 5:00 AM · Fly LIS→CPH→ORD→SEA · Home 8:35 PM
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
